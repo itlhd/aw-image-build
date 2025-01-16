@@ -862,7 +862,7 @@ function webseed ()
 	# when selecting china mirrors, use only China mirror, others are very slow there
 	if [[ $DOWNLOAD_MIRROR == china ]]; then
 		WEBSEED=(
-		https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/
+		https://mirrors.ustc.edu.cn/armbian-dl/
 		)
 	elif [[ $DOWNLOAD_MIRROR == bfsu ]]; then
 		WEBSEED=(
@@ -887,7 +887,7 @@ download_and_verify()
 	mkdir -p ${localdir}
 
 	if [[ $DOWNLOAD_MIRROR == china ]]; then
-		local server="https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/"
+		local server="https://mirrors.ustc.edu.cn/armbian-dl/"
 	elif [[ $DOWNLOAD_MIRROR == bfsu ]]; then
 		local server="https://mirrors.bfsu.edu.cn/armbian-releases/"
 	else
@@ -902,7 +902,7 @@ download_and_verify()
 	timeout 10 curl --head --fail --silent ${server}${remotedir}/${filename} 2>&1 >/dev/null
 	if [[ $? -ne 7 && $? -ne 22 && $? -ne 0 ]]; then
 		display_alert "Timeout from $server" "retrying" "info"
-		server="https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/"
+		server="https://mirrors.ustc.edu.cn/armbian-dl/"
 
 		# switch to another china mirror if tuna timeouts
 		timeout 10 curl --head --fail --silent ${server}${remotedir}/${filename} 2>&1 >/dev/null
@@ -927,7 +927,7 @@ download_and_verify()
 	else
 		# download control file
 		local torrent=${server}$remotedir/${filename}.torrent
-		aria2c --download-result=hide --disable-ipv6=true --summary-interval=0 --console-log-level=error --auto-file-renaming=false \
+		aria2c --max-concurrent-downloads=1 --split=1 --download-result=hide --disable-ipv6=true --summary-interval=0 --console-log-level=error --auto-file-renaming=false \
 		--continue=false --allow-overwrite=true --dir="${localdir}" ${server}${remotedir}/${filename}.asc $(webseed "$remotedir/${filename}.asc") -o "${filename}.asc"
 		[[ $? -ne 0 ]] && display_alert "Failed to download control file" "" "wrn"
 	fi
@@ -936,7 +936,7 @@ download_and_verify()
 	if [[ ! -f "${localdir}/${filename}.complete" ]]; then
 		if [[ ! `timeout 10 curl --head --fail --silent ${server}${remotedir}/${filename} 2>&1 >/dev/null` ]]; then
 			display_alert "downloading using http(s) network" "$filename"
-			aria2c --download-result=hide --rpc-save-upload-metadata=false --console-log-level=error \
+			aria2c --max-concurrent-downloads=1 --split=1 --download-result=hide --rpc-save-upload-metadata=false --console-log-level=error \
 			--dht-file-path="${TOP_DIR}"/cache/.aria2/dht.dat --disable-ipv6=true --summary-interval=0 --auto-file-renaming=false --dir="${localdir}" ${server}${remotedir}/${filename} $(webseed "${remotedir}/${filename}") -o "${filename}"
 			# mark complete
 			[[ $? -eq 0 ]] && touch "${localdir}/${filename}.complete" && echo ""
