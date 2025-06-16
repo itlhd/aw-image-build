@@ -63,6 +63,6 @@ sudo docker rm ubuntu-dev
 
     gpg秘钥过期，debian-archive-keyring不是最新版本，可以手动安装最新版。
     ```
-    wget http://ftp.cn.debian.org/debian/pool/main/d/debian-archive-keyring/debian-archive-keyring_2023.4_all.deb
-    sudo dpkg -i debian-archive-keyring_2023.4_all.deb
+    wget http://ftp.cn.debian.org/debian/pool/main/d/debian-archive-keyring/debian-archive-keyring_2023.3%2Bdeb12u2_all.deb
+    sudo dpkg -i debian-archive-keyring_2023.3+deb12u2_all.deb
     ```

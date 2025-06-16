@@ -634,9 +634,9 @@ check_pkg_version()
 		sudo dpkg -i debootstrap_1.0.137ubuntu3_all.deb
 	fi
 
-	if [[ -z $(dpkg -l debian-archive-keyring | grep 2023.4) ]]; then
-		[[ ! -e debian-archive-keyring_2023.4_all.deb ]] && wget http://ftp.cn.debian.org/debian/pool/main/d/debian-archive-keyring/debian-archive-keyring_2023.4_all.deb
-		sudo dpkg -i debian-archive-keyring_2023.4_all.deb
+	if [[ -z $(dpkg -l debian-archive-keyring | grep 2023.3) ]]; then
+		[[ ! -e debian-archive-keyring_2023.3+deb12u2_all.deb ]] && wget http://ftp.cn.debian.org/debian/pool/main/d/debian-archive-keyring/debian-archive-keyring_2023.3%2Bdeb12u2_all.deb
+		sudo dpkg -i debian-archive-keyring_2023.3+deb12u2_all.deb
 	fi
 }
 
