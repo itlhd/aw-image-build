@@ -390,3 +390,15 @@ add_apt_sources() {
 		fi
 	done
 }
+
+# add_apt_lbc_sources_and_files
+#
+add_apt_lbc_sources_and_files() {
+	mkdir -p "${SDCARD}"/etc/apt/keyrings
+	chroot "${SDCARD}" /bin/bash -c "curl -fsSL https://Embedfire.github.io/keyfile | gpg --dearmor -o /etc/apt/keyrings/embedfire.gpg"
+	chroot "${SDCARD}" /bin/bash -c "chmod a+r /etc/apt/keyrings/embedfire.gpg"
+	echo "deb [arch=arm64 signed-by=/etc/apt/keyrings/embedfire.gpg] https://cloud.embedfire.com/mirrors/ebf-debian carp-lbc main" > "${SDCARD}"/etc/apt/sources.list.d/embedfire-lbc.list
+
+	chroot "${SDCARD}" /bin/bash -c "apt update"
+	chroot "${SDCARD}" /bin/bash -c "apt install  fire-config-allwinner"
+}

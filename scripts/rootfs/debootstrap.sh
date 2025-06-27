@@ -99,6 +99,9 @@ if [[ $BUILD_OS_TYPE == "desktop" ]]; then
 		install ${apt_desktop_install_flags} $PACKAGE_LIST_DESKTOP"'
 fi
 
+# Add lbc sources and files
+add_apt_lbc_sources_and_files
+
 # Remove packages from packages.uninstall
 display_alert "Uninstall $RELEASE packages" "apt-get purge $PACKAGE_LIST_UNINSTALL" "info"
 eval 'LC_ALL=C LANG=C chroot $SDCARD /bin/bash -e -c "DEBIAN_FRONTEND=noninteractive apt-get -y -qq \
