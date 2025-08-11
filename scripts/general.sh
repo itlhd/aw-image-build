@@ -150,7 +150,7 @@ create_sources_list()
 	deb https://${DEBIAN_MIRROR} ${release}-updates main contrib non-free
 	#deb-src https://${DEBIAN_MIRROR} ${release}-updates main contrib non-free
 
-	deb https://${DEBIAN_MIRROR} ${release}-backports main contrib non-free
+	#deb https://${DEBIAN_MIRROR} ${release}-backports main contrib non-free
 	#deb-src https://${DEBIAN_MIRROR} ${release}-backports main contrib non-free
 
 	deb https://${DEBIAN_SECURTY} ${release}-security main contrib non-free
