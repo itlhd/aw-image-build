@@ -107,8 +107,6 @@ prepare_board() {
 			# 注册hci设备
 			hciattach_lbc -n -s 1500000 ttyAS1 aic &
 
-			echo 1 > /sys/class/rfkill/rfkill3/state
-
 			;;
 	
 	esac
