@@ -23,10 +23,10 @@ compile_atf()
 	cd ${ATF_DIR} || exit
 
 	display_alert "Compiler ATF clean" "make distclean" "info"
-	make distclean
+	make CROSS_COMPILE="$ATF_COMPILER" distclean
 
-	display_alert "Compiler ATF command" "make $CTHREADS ENABLE_BACKTRACE=0 $ATF_MAKE_ARGS CROSS_COMPILE=$CCACHE $ATF_COMPILER" "info"
-	eval CCACHE_BASEDIR="$(pwd)" 'make ENABLE_BACKTRACE="0" $ATF_MAKE_ARGS $CTHREADS CROSS_COMPILE="$CCACHE $ATF_COMPILER"'
+	display_alert "Compiler ATF command" "make $CTHREADS ENABLE_BACKTRACE=0 $ATF_MAKE_ARGS CROSS_COMPILE=$ATF_COMPILER" "info"
+	eval CCACHE_BASEDIR="$(pwd)" 'make ENABLE_BACKTRACE="0" $ATF_MAKE_ARGS $CTHREADS CROSS_COMPILE=$ATF_COMPILER'
 
 	[[ $(type -t atf_custom_postprocess) == function ]] && atf_custom_postprocess
 }
