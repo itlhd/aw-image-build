@@ -108,6 +108,10 @@ install_common()
 
 	echo "${HOST_NAME}" > "${SDCARD}"/etc/hostname
 
+	# set temp resolv.conf
+	rm -f "${SDCARD}"/etc/resolv.conf
+	cp /etc/resolv.conf "${SDCARD}"/etc/resolv.conf
+
 	# set hostname in hosts file
 	cat <<-EOF > "${SDCARD}"/etc/hosts
 	127.0.0.1   localhost
