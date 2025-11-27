@@ -6,7 +6,7 @@ out/
 toolchains/
 # others/
 
+# debian-archive-keyring_*_all.deb
+# debootstrap_*_all.deb
 
-debian-archive-keyring_*_all.deb
-debootstrap_*_all.deb
 env.txt
