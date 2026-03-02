@@ -862,8 +862,8 @@ function webseed ()
 	# when selecting china mirrors, use only China mirror, others are very slow there
 	if [[ $DOWNLOAD_MIRROR == china ]]; then
 		WEBSEED=(
-		https://mirrors.ustc.edu.cn/armbian-dl/
-		# https://mirrors.aliyun.com/armbian-releases/
+		# https://mirrors.ustc.edu.cn/armbian-dl/
+		https://mirrors.aliyun.com/armbian-releases/
 		)
 	elif [[ $DOWNLOAD_MIRROR == bfsu ]]; then
 		WEBSEED=(
@@ -888,8 +888,8 @@ download_and_verify()
 	mkdir -p ${localdir}
 
 	if [[ $DOWNLOAD_MIRROR == china ]]; then
-		local server="https://mirrors.ustc.edu.cn/armbian-dl/"
-		# local server="https://mirrors.aliyun.com/armbian-releases/"
+		# local server="https://mirrors.ustc.edu.cn/armbian-dl/"
+		local server="https://mirrors.aliyun.com/armbian-releases/"
 	elif [[ $DOWNLOAD_MIRROR == bfsu ]]; then
 		local server="https://mirrors.bfsu.edu.cn/armbian-releases/"
 	else
@@ -904,8 +904,8 @@ download_and_verify()
 	timeout 10 curl --head --fail --silent ${server}${remotedir}/${filename} 2>&1 >/dev/null
 	if [[ $? -ne 7 && $? -ne 22 && $? -ne 0 ]]; then
 		display_alert "Timeout from $server" "retrying" "info"
-		server="https://mirrors.ustc.edu.cn/armbian-dl/"
-		# server="https://mirrors.aliyun.com/armbian-releases/"
+		# server="https://mirrors.ustc.edu.cn/armbian-dl/"
+		server="https://mirrors.aliyun.com/armbian-releases/"
 
 		# switch to another china mirror if tuna timeouts
 		timeout 10 curl --head --fail --silent ${server}${remotedir}/${filename} 2>&1 >/dev/null
