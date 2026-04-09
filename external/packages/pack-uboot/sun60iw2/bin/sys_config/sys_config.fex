@@ -50,19 +50,19 @@ power_mode      = 1
 card_ctrl       = 0
 card_high_speed = 1
 card_line       = 4
-sdc_d1          = port:PF0<2><1><0><default>
-sdc_d0          = port:PF1<2><1><0><default>
-sdc_clk         = port:PF2<2><1><2><default>
-sdc_cmd         = port:PF3<2><1><0><default>
-sdc_d3          = port:PF4<2><1><0><default>
-sdc_d2          = port:PF5<2><1><0><default>
+sdc_d1          = port:PF0<2><1><1><default>
+sdc_d0          = port:PF1<2><1><1><default>
+sdc_clk         = port:PF2<2><1><1><default>
+sdc_cmd         = port:PF3<2><1><1><default>
+sdc_d3          = port:PF4<2><1><1><default>
+sdc_d2          = port:PF5<2><1><1><default>
 ;sdc_type	= "tm1"
 
 [card2_boot_para]
 card_ctrl       = 2
 card_high_speed = 1
 card_line       = 8
-sdc_clk         = port:PC5<3><1><3><default>
+sdc_clk         = port:PC5<3><1><1><default>
 sdc_cmd         = port:PC6<3><1><1><default>
 sdc_d0          = port:PC10<3><1><1><default>
 sdc_d1          = port:PC13<3><1><1><default>
@@ -72,20 +72,20 @@ sdc_d4          = port:PC9<3><1><1><default>
 sdc_d5          = port:PC11<3><1><1><default>
 sdc_d6          = port:PC14<3><1><1><default>
 sdc_d7          = port:PC16<3><1><1><default>
-sdc_emmc_rst    = port:PC1<3><1><3><default>
-sdc_ds          = port:PC0<3><2><3><default>
+sdc_emmc_rst    = port:PC1<3><1><1><default>
+sdc_ds          = port:PC0<3><2><1><default>
 
 [uart_para]
 uart_debug_port = 0
-uart_debug_tx   = port:PB09<2><1><default><default>
-uart_debug_rx   = port:PB10<2><1><default><default>
+uart_debug_tx   = port:PB0<3><1><default><default>
+uart_debug_rx   = port:PB1<3><1><default><default>
 
-[jtag_para]
-jtag_enable     = 1
-jtag_ms         = port:PB0<7><default><default><default>
-jtag_ck         = port:PB1<7><default><default><default>
-jtag_do         = port:PB2<7><default><default><default>
-jtag_di         = port:PB3<7><default><default><default>
+;[jtag_para]
+;jtag_enable     = 1
+;jtag_ms         = port:PB0<7><default><default><default>
+;jtag_ck         = port:PB1<7><default><default><default>
+;jtag_do         = port:PB2<7><default><default><default>
+;jtag_di         = port:PB3<7><default><default><default>
 
 [twi_para]
 twi_used        = 1
@@ -109,44 +109,188 @@ twi_sda         = port:PL1<2><1><default><default>
 select_mode	= 3
 gpadc_channel	= 1
 select_gpio0	= port:PH16<0><1><default><default>
+select_gpio1	= port:PH17<0><1><default><default>
+;select_gpio2	= port:PH1<0><1><default><default>
+;select_gpio3	= port:PH0<0><1><default><default>
 
 
 ;*****************************************************************************
 ;sdram configuration
 ;
 ;*****************************************************************************
+;cxmt 4g ddr(unused)
 [dram_para]
-dram_clk       = 1200
-dram_type      = 8
-dram_dx_odt    = 0x08080808
-dram_dx_dri    = 0x0e0e0e0e
-dram_ca_dri    = 0x88030e0e
+dram_clk       = 1800
+dram_type      = 9
+dram_dx_odt    = 0x0e0e0e0e
+dram_dx_dri    = 0x0f0f0f0f
+dram_ca_dri    = 0xec030e0f
 dram_para0     = 0
-dram_para1     = 0x311a
-dram_para2     = 0x0001
-dram_mr0       = 0x0
-dram_mr1       = 0x8c
+dram_para1     = 0xa10a
+dram_para2     = 0x1001
+dram_mr0       = 0
+dram_mr1       = 0
 dram_mr2       = 0
-dram_mr3       = 0x33
-dram_mr4       = 0x3
+dram_mr3       = 0x6
+dram_mr4       = 0
 dram_mr5       = 0
 dram_mr6       = 0
-dram_mr11      = 0x4
-dram_mr12      = 0x72
+dram_mr11      = 0x12
+dram_mr12      = 0x44
 dram_mr13      = 0
-dram_mr14      = 0x9
+dram_mr14      = 0x34
 dram_mr16      = 0
-dram_mr17      = 0
-dram_mr22      = 0x24
-dram_tpr0      = 0
+dram_mr17      = 0x86
+dram_mr22      = 0
+dram_tpr0      = 0x4040
 dram_tpr1      = 0
-dram_tpr2      = 0
-dram_tpr3      = 0x110000
-dram_tpr6      = 0x402a
-dram_tpr10     = 0x121f0000
+dram_tpr2      = 0x11080503
+dram_tpr3      = 0x3800
+dram_tpr6      = 0x3514
+dram_tpr10     = 0x325f0000
 dram_tpr11     = 0
 dram_tpr12     = 0
-dram_tpr13     = 0x61
+dram_tpr13     = 0x10065
+dram_tpr14     = 0
+
+;cxmt 6g ddr
+[dram_para1]
+dram_clk       = 1800
+dram_type      = 9
+dram_dx_odt    = 0x0e0e0e0e
+dram_dx_dri    = 0x0f0f0f0f
+dram_ca_dri    = 0xec030e0f
+dram_para0     = 0
+dram_para1     = 0xa10a
+dram_para2     = 0x1001
+dram_mr0       = 0
+dram_mr1       = 0
+dram_mr2       = 0
+dram_mr3       = 0x6
+dram_mr4       = 0
+dram_mr5       = 0
+dram_mr6       = 0
+dram_mr11      = 0x12
+dram_mr12      = 0x44
+dram_mr13      = 0
+dram_mr14      = 0x34
+dram_mr16      = 0
+dram_mr17      = 0x86
+dram_mr22      = 0
+dram_tpr0      = 0x4040
+dram_tpr1      = 0
+dram_tpr2      = 0x11080503
+dram_tpr3      = 0x3800
+dram_tpr6      = 0x3514
+dram_tpr10     = 0x325f0000
+dram_tpr11     = 0
+dram_tpr12     = 0
+dram_tpr13     = 0x10065
+dram_tpr14     = 0
+
+;cxmt 8g ddr
+[dram_para2]
+dram_clk = 1800
+dram_type = 9
+dram_dx_odt = 0x0e0e0e0e
+dram_dx_dri = 0x0f0f0f0f
+dram_ca_dri = 0xec030e0f
+dram_para0 = 0
+dram_para1 = 0xa10a
+dram_para2 = 0x1001
+dram_mr0 = 0
+dram_mr1 = 0
+dram_mr2 = 0
+dram_mr3 = 0x6
+dram_mr4 = 0
+dram_mr5 = 0
+dram_mr6 = 0
+dram_mr11 = 0x1b
+dram_mr12 = 0x44
+dram_mr13 = 0
+dram_mr14 = 0x1d
+dram_mr16 = 0
+dram_mr17 = 0x86
+dram_mr22 = 0
+dram_tpr0 = 0x4040
+dram_tpr1 = 0
+dram_tpr2 = 0x11080503
+dram_tpr3 = 0x3800
+dram_tpr6 = 0x3514
+dram_tpr10 = 0xb25f0000
+dram_tpr11 = 0
+dram_tpr12 = 0
+dram_tpr13 = 0x00065
+dram_tpr14 = 0
+
+;cxmt 12g ddr
+[dram_para3]
+dram_clk = 1800
+dram_type = 9
+dram_dx_odt = 0x0e0e0e0e
+dram_dx_dri = 0x0f0f0f0f
+dram_ca_dri = 0xec030e0f
+dram_para0 = 0
+dram_para1 = 0xa11a
+dram_para2 = 0x1001
+dram_mr0 = 0
+dram_mr1 = 0
+dram_mr2 = 0
+dram_mr3 = 0x6
+dram_mr4 = 0
+dram_mr5 = 0
+dram_mr6 = 0
+dram_mr11 = 0x12
+dram_mr12 = 0x44
+dram_mr13 = 0
+dram_mr14 = 0x34
+dram_mr16 = 0
+dram_mr17 = 0x86
+dram_mr22 = 0
+dram_tpr0 = 0x4040
+dram_tpr1 = 0
+dram_tpr2 = 0x11080503
+dram_tpr3 = 0x3800
+dram_tpr6 = 0x3514
+dram_tpr10 = 0xb25f0000
+dram_tpr11 = 0
+dram_tpr12 = 0
+dram_tpr13 = 0x10065
+dram_tpr14 = 0
+
+;skhnix 4g ddr 
+[dram_para7]
+dram_clk       = 2400
+dram_type      = 9
+dram_dx_odt    = 0x0e0e0e0e
+dram_dx_dri    = 0x0f0f0f0f
+dram_ca_dri    = 0xec030e0f
+dram_para0     = 0
+dram_para1     = 0xa10a
+dram_para2     = 0x0001
+dram_mr0       = 0
+dram_mr1       = 0
+dram_mr2       = 0
+dram_mr3       = 0x6
+dram_mr4       = 0
+dram_mr5       = 0
+dram_mr6       = 0
+dram_mr11      = 0x12
+dram_mr12      = 0x44
+dram_mr13      = 0
+dram_mr14      = 0x34
+dram_mr16      = 0
+dram_mr17      = 0x06
+dram_mr22      = 0
+dram_tpr0      = 0x4040
+dram_tpr1      = 0
+dram_tpr2      = 0x170b0703
+dram_tpr3      = 0x3800
+dram_tpr6      = 0x3514
+dram_tpr10     = 0x325f0000
+dram_tpr11     = 0
+dram_tpr12     = 0
+dram_tpr13     = 0x65
 dram_tpr14     = 0
 
 [secure]
